@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: django-excel-response2
+Version: 1.0.1
+Summary: A function extends of Tarken's django-excel-response
+Home-page: https://github.com/Brightcells/django-excel-response2
+Author: Hackathon
+Author-email: kimi.huang@brightcells.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: django-excel-response django-excel-response2
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Office/Business :: Financial :: Spreadsheet
