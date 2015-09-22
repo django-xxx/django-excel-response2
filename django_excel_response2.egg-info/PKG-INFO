@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: django-excel-response2
-Version: 1.0.1
+Version: 2.0.0
 Summary: A function extends of Tarken's django-excel-response
 Home-page: https://github.com/Brightcells/django-excel-response2
 Author: Hackathon

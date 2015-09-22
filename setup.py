@@ -3,7 +3,7 @@ from __future__ import with_statement
 from setuptools import setup
 
 
-version = '1.0.1'
+version = '2.0.0'
 
 
 setup(
@@ -19,7 +19,7 @@ setup(
     author_email='kimi.huang@brightcells.com',
 
     py_modules=['excel_response2'],
-    install_requires = ['xlwt', 'pytz'],
+    install_requires=['xlwt', 'pytz'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',

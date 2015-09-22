@@ -1,3 +1,4 @@
+excel_response2.py
 setup.py
 django_excel_response2.egg-info/PKG-INFO
 django_excel_response2.egg-info/SOURCES.txt
