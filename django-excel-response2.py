@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-'''
+"""
 A function extends of Tarken's django-excel-response
 
 django-excel-response
@@ -13,12 +13,15 @@ As discussed in http://segmentfault.com/q/1010000000095546.
 We realize django-excel-response2
 Based on Tarken's django-excel-response to solve this problem
 By adding a Param named font to set font.
-'''
+"""
 
-import datetime
-
+from django.conf import settings
 from django.db.models.query import QuerySet, ValuesQuerySet
 from django.http import HttpResponse
+from django.utils import timezone
+
+import datetime
+import pytz
 
 
 class ExcelResponse(HttpResponse):
@@ -66,6 +69,8 @@ class ExcelResponse(HttpResponse):
             for rowx, row in enumerate(data):
                 for colx, value in enumerate(row):
                     if isinstance(value, datetime.datetime):
+                        if timezone.is_aware(value):
+                            value = timezone.make_naive(value, pytz.timezone(settings.TIME_ZONE))
                         cell_style = styles['datetime']
                     elif isinstance(value, datetime.date):
                         cell_style = styles['date']
