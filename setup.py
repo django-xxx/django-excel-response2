@@ -11,7 +11,7 @@ setup(
     version=version,
     keywords='django-excel-response django-excel-response2',
     description="A function extends of Tarken's django-excel-response",
-    long_description='',
+    long_description=open('README.rst').read(),
 
     url='https://github.com/Brightcells/django-excel-response2',
 
