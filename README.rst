@@ -28,6 +28,20 @@ At The Same Time:
 * Fix Bug
     * can't subtract offset-naive and offset-aware datetimes
 
+Inherit
+=======
+
+::
+
+    # Since Version 2.0.2
+    if 'FileResponse' in names:
+        ExcelResponse = type('ExcelResponse', (http.FileResponse, ), dict(__init__=__init__))
+    elif 'StreamingHttpResponse' in names:
+        ExcelResponse = type('StreamingHttpResponse', (http.StreamingHttpResponse, ), dict(__init__=__init__))
+    else:
+        ExcelResponse = type('HttpResponse', (http.HttpResponse, ), dict(__init__=__init__))
+
+
 Installation
 ============
 

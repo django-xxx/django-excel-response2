@@ -20,17 +20,33 @@ import datetime
 import pytz
 from django import http
 from django.conf import settings
-from django.db.models.query import QuerySet, ValuesQuerySet
+from django.db.models.query import QuerySet
 from django.utils import timezone
 
 
-def __init__(self, data, output_name='excel_data', headers=None,
-             force_csv=False, encoding='utf8', font=''):
+# ValuesQuerySet and ValuesListQuerySet have been removed.
+# https://docs.djangoproject.com/en/1.9/releases/1.9/#miscellaneous
+try:
+    from django.db.models.query import ValuesQuerySet
+    SUPPORT_ValuesQuerySet = True
+except ImportError:
+    SUPPORT_ValuesQuerySet = False
+
+try:
+    from cStringIO import StringIO
+except ImportError:
+    try:
+        from StringIO import StringIO
+    except ImportError:
+        from io import StringIO
+
+
+def __init__(self, data, output_name='excel_data', headers=None, force_csv=False, encoding='utf8', font=''):
 
     # Make sure we've got the right type of data to work with
     # ``list index out of range`` if data is ``[]``
     valid_data = False
-    if isinstance(data, ValuesQuerySet):
+    if SUPPORT_ValuesQuerySet and isinstance(data, ValuesQuerySet):
         data = list(data)
     elif isinstance(data, QuerySet):
         data = list(data.values())
@@ -44,8 +60,7 @@ def __init__(self, data, output_name='excel_data', headers=None,
             valid_data = True
     assert valid_data is True, 'ExcelResponse requires a sequence of sequences'
 
-    import StringIO
-    output = StringIO.StringIO()
+    output = StringIO()
     # Excel has a limit on number of rows; if we have more than that, make a csv
     use_xls = False
     if len(data) <= 65536 and force_csv is not True:
@@ -53,17 +68,17 @@ def __init__(self, data, output_name='excel_data', headers=None,
             import xlwt
         except ImportError:
             # xlwt doesn't exist; fall back to csv
-            pass
-        else:
             use_xls = True
     if use_xls:
         book = xlwt.Workbook(encoding=encoding)
         sheet = book.add_sheet('Sheet 1')
-        styles = {'datetime': xlwt.easyxf(num_format_str='yyyy-mm-dd hh:mm:ss'),
-                  'date': xlwt.easyxf(num_format_str='yyyy-mm-dd'),
-                  'time': xlwt.easyxf(num_format_str='hh:mm:ss'),
-                  'font': xlwt.easyxf('%s %s' % ('font:', font)),
-                  'default': xlwt.Style.default_style}
+        styles = {
+            'datetime': xlwt.easyxf(num_format_str='yyyy-mm-dd hh:mm:ss'),
+            'date': xlwt.easyxf(num_format_str='yyyy-mm-dd'),
+            'time': xlwt.easyxf(num_format_str='hh:mm:ss'),
+            'font': xlwt.easyxf('%s %s' % ('font:', font)),
+            'default': xlwt.Style.default_style,
+        }
 
         for rowx, row in enumerate(data):
             for colx, value in enumerate(row):
@@ -91,14 +106,12 @@ def __init__(self, data, output_name='excel_data', headers=None,
                     value = unicode(value)
                 value = value.encode(encoding)
                 out_row.append(value.replace('"', '""'))
-            output.write('"%s"\n' %
-                         '","'.join(out_row))
+            output.write('"%s"\n' % '","'.join(out_row))
         content_type = 'text/csv'
         file_ext = 'csv'
     output.seek(0)
     super(ExcelResponse, self).__init__(output, content_type=content_type)
-    self['Content-Disposition'] = 'attachment;filename="%s.%s"' % \
-        (output_name.replace('"', '\"'), file_ext)
+    self['Content-Disposition'] = 'attachment;filename="%s.%s"' % (output_name.replace('"', '\"'), file_ext)
 
 
 names = dir(http)
