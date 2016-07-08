@@ -18,6 +18,7 @@ By adding a Param named font to set font.
 import datetime
 
 import pytz
+
 from django import http
 from django.conf import settings
 from django.db.models.query import QuerySet
