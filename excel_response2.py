@@ -17,7 +17,6 @@ By adding a Param named font to set font.
 
 import datetime
 
-import codecs
 import pytz
 
 from django import http
