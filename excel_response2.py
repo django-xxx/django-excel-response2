@@ -17,6 +17,7 @@ By adding a Param named font to set font.
 
 import datetime
 
+import codecs
 import pytz
 
 from django import http
@@ -64,12 +65,13 @@ def __init__(self, data, output_name='excel_data', headers=None, force_csv=False
     output = StringIO()
     # Excel has a limit on number of rows; if we have more than that, make a csv
     use_xls = False
-    if len(data) <= 65536 and force_csv is not True:
+    if len(data) <= 65536 and not force_csv:
         try:
             import xlwt
+            use_xls = True
         except ImportError:
             # xlwt doesn't exist; fall back to csv
-            use_xls = True
+            pass
     if use_xls:
         book = xlwt.Workbook(encoding=encoding)
         sheet = book.add_sheet('Sheet 1')
