@@ -21,7 +21,7 @@ setup(
     author_email='kimi.huang@brightcells.com',
 
     py_modules=['excel_response2'],
-    install_requires=['xlwt', 'pytz'],
+    install_requires=['xlwt', 'pytz', 'screen'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
