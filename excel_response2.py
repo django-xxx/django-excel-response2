@@ -5,7 +5,6 @@ import datetime
 import pytz
 import screen
 import xlwt
-
 from django import http
 from django.conf import settings
 from django.db.models.query import QuerySet
@@ -122,17 +121,17 @@ def __init__(self, data, output_name='excel_data', headers=None, force_csv=False
     # Make sure we've got the right type of data to work with
     # ``list index out of range`` if data is ``[]``
     valid_data = False
-    if SUPPORT_ValuesQuerySet and isinstance(data, ValuesQuerySet):
-        data = list(data)
-    elif isinstance(data, QuerySet):
-        data = list(data.values())
-    if hasattr(data, '__getitem__'):
-        if isinstance(data[0], dict):
+    if SUPPORT_ValuesQuerySet and isinstance(self.data, ValuesQuerySet):
+        self.data = list(self.data)
+    elif isinstance(self.data, QuerySet):
+        self.data = list(self.data.values())
+    if hasattr(self.data, '__getitem__'):
+        if isinstance(self.data[0], dict):
             if headers is None:
-                headers = data[0].keys()
-            data = [[row[col] for col in headers] for row in data]
-            data.insert(0, headers)
-        if hasattr(data[0], '__getitem__'):
+                headers = self.data[0].keys()
+            self.data = [[row[col] for col in headers] for row in self.data]
+            self.data.insert(0, headers)
+        if hasattr(self.data[0], '__getitem__'):
             valid_data = True
     assert valid_data is True, 'ExcelResponse requires a sequence of sequences'
 
