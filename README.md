@@ -57,7 +57,6 @@ or
 
 |                 | Win Excel 2013 | Mac Excel 2011 | Mac Excel 2016 | Mac Numbers |
 | --------------- | :------------: | :------------: | :------------: | :---------: |
-| UTF8            |     Messy      |     Messy      |                |   Normal    |
-| GB18030         |     Normal     |     Normal     |                |    Messy    |
-| UTF8 + BOM_UTF8 |     Normal     |     Messy      |                |   Normal    |
-|                 |                |                |                |             |
+| UTF8            | Messy          | Messy          |                | Normal      |
+| GB18030         | Normal         | Normal         |                | Messy       |
+| UTF8 + BOM_UTF8 | Normal         | Messy          |                | Normal      |
