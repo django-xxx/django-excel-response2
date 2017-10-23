@@ -106,10 +106,11 @@ def as_csv(self):
         self.output.write('"%s"\n' % '","'.join(out_row))
 
 
-def __init__(self, data, output_name='excel_data', headers=None, force_csv=False, encoding='utf8', font='', sheet_name='Sheet 1', blanks_for_none=True, auto_adjust_width=True):
+def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', headers=None, force_csv=False, encoding='utf8', font='', sheet_name='Sheet 1', blanks_for_none=True, auto_adjust_width=True):
 
     self.data = data
     self.output_name = output_name
+    self.format = format
     self.headers = headers
     self.force_csv = force_csv
     self.encoding = encoding
@@ -141,7 +142,8 @@ def __init__(self, data, output_name='excel_data', headers=None, force_csv=False
     _, content_type, file_ext = (self.as_xls, 'application/vnd.ms-excel', 'xls') if use_xls else (self.as_csv, 'text/csv', 'csv')
     self.output.seek(0)
     super(ExcelResponse, self).__init__(self.output, content_type=content_type)
-    self['Content-Disposition'] = 'attachment;filename="%s.%s"' % (self.output_name.replace('"', '\"'), file_ext)
+    file_name_ext = '_{0}'.format(datetime.datetime.now().strftime(self.format)) if self.format else ''
+    self['Content-Disposition'] = 'attachment;filename="%s.%s"' % ('{0}{1}'.format(self.output_name, file_name_ext).replace('"', '\"'), file_ext)
 
 
 names = dir(http)
