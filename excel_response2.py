@@ -9,15 +9,8 @@ from django import http
 from django.conf import settings
 from django.db.models.query import QuerySet
 from django.utils import timezone
+from django_six import Support_ValuesQuerySet, ValuesQuerySet
 
-
-# ValuesQuerySet and ValuesListQuerySet have been removed.
-# https://docs.djangoproject.com/en/1.9/releases/1.9/#miscellaneous
-try:
-    from django.db.models.query import ValuesQuerySet
-    SUPPORT_ValuesQuerySet = True
-except ImportError:
-    SUPPORT_ValuesQuerySet = False
 
 try:
     from cStringIO import StringIO
@@ -122,7 +115,7 @@ def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', header
     # Make sure we've got the right type of data to work with
     # ``list index out of range`` if data is ``[]``
     valid_data = False
-    if SUPPORT_ValuesQuerySet and isinstance(self.data, ValuesQuerySet):
+    if Support_ValuesQuerySet and isinstance(self.data, ValuesQuerySet):
         self.data = list(self.data)
     elif isinstance(self.data, QuerySet):
         self.data = list(self.data.values())

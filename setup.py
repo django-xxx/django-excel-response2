@@ -21,7 +21,7 @@ setup(
     author_email='kimi.huang@brightcells.com',
 
     py_modules=['excel_response2'],
-    install_requires=['xlwt', 'pytz', 'screen'],
+    install_requires=['xlwt', 'pytz', 'screen', 'django-six>=1.0.4'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
