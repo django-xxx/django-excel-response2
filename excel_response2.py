@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 
+import codecs
 import datetime
 
 import pytz
@@ -87,6 +88,11 @@ def as_xls(self):
 
 @property
 def as_csv(self):
+    # https://stackoverflow.com/questions/4348802/how-can-i-output-a-utf-8-csv-in-php-that-excel-will-read-properly?answertab=votes
+    # https://stackoverflow.com/questions/155097/microsoft-excel-mangles-diacritics-in-csv-files/1648671#1648671
+    # https://wiki.scn.sap.com/wiki/display/ABAP/CSV+tests+of+encoding+and+column+separator?original_fqdn=wiki.sdn.sap.com
+    if self.encoding == 'utf-8-sig':
+        self.output.write(codecs.BOM_UTF8)
     for row in self.data:
         out_row = []
         for value in row:
@@ -99,7 +105,7 @@ def as_csv(self):
         self.output.write('"%s"\n' % '","'.join(out_row))
 
 
-def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', headers=None, force_csv=False, encoding='utf8', font='', sheet_name='Sheet 1', blanks_for_none=True, auto_adjust_width=True):
+def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', headers=None, force_csv=False, encoding='utf-8-sig', font='', sheet_name='Sheet 1', blanks_for_none=True, auto_adjust_width=True):
 
     self.data = data
     self.output_name = output_name
