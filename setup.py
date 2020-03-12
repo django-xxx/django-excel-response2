@@ -20,8 +20,9 @@ setup(
     author='Hackathon',
     author_email='kimi.huang@brightcells.com',
 
-    py_modules=['excel_response2'],
-    install_requires=['xlwt', 'pytz', 'screen', 'django-excel-base', 'django-six>=1.0.4'],
+    packages=['django_excel_response'],
+    py_modules=[],
+    install_requires=['django-excel-base', 'django-six>=1.0.4'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',

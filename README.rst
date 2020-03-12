@@ -55,7 +55,7 @@ Usage
 
 ::
 
-    from excel_response2 import ExcelResponse
+    from django_excel_response import ExcelResponse
 
     def excelview(request):
         objs = SomeModel.objects.all()
@@ -64,7 +64,7 @@ Usage
 
 or::
 
-    from excel_response2 import ExcelResponse
+    from django_excel_response import ExcelResponse
 
     def excelview(request):
         data = [

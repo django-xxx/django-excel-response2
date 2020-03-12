@@ -19,7 +19,7 @@ A function extends of Tarken's django-excel-response
 
 ## Usage
 
-    from excel_response2 import ExcelResponse
+    from django_excel_response import ExcelResponse
 
     def excelview(request):
         objs = SomeModel.objects.all()
@@ -28,7 +28,7 @@ A function extends of Tarken's django-excel-response
 
 or
 
-    from excel_response2 import ExcelResponse
+    from django_excel_response import ExcelResponse
 
     def excelview(request):
         data = [
