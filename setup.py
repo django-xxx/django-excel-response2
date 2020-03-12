@@ -15,13 +15,13 @@ setup(
     description="A function extends of Tarken's django-excel-response",
     long_description=open('README.rst').read(),
 
-    url='https://github.com/Brightcells/django-excel-response2',
+    url='https://github.com/django-xxx/django-excel-response2',
 
     author='Hackathon',
     author_email='kimi.huang@brightcells.com',
 
     py_modules=['excel_response2'],
-    install_requires=['xlwt', 'pytz', 'screen', 'django-six>=1.0.4'],
+    install_requires=['xlwt', 'pytz', 'screen', 'django-excel-base', 'django-six>=1.0.4'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
