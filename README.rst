@@ -75,6 +75,19 @@ or::
         return ExcelResponse(data, 'my_data', font='name SimSum')
 
 
+or::
+
+    from django_excel_response import ExcelResponse
+
+    def excelview(request):
+        data = [
+            ['Column 1', 'Column 2'],
+            [1, [2, 3]],
+            [3, 4]
+        ]
+        return ExcelResponse(data, 'my_data', font='name SimSum', row_merge=True)
+
+
 Params
 ======
 
