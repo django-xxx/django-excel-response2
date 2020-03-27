@@ -22,7 +22,7 @@ setup(
 
     packages=['django_excel_response'],
     py_modules=[],
-    install_requires=['django-excel-base>=1.0.3', 'django-six>=1.0.4'],
+    install_requires=['django-excel-base>=1.0.4', 'django-six>=1.0.4'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
