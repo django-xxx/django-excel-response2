@@ -32,6 +32,24 @@ or
 
     def excelview(request):
         data = [
+            {
+                'Column 1': 1,
+                'Column 2': 2,
+            },
+            {
+                'Column 1': 3,
+                'Column 2': 4,
+            }
+        ]
+        return ExcelResponse(data, 'my_data', font='name SimSum')
+
+
+or
+
+    from django_excel_response import ExcelResponse
+
+    def excelview(request):
+        data = [
             ['Column 1', 'Column 2'],
             [1, 2],
             [3, 4]
