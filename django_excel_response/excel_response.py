@@ -46,7 +46,7 @@ def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', header
     if hasattr(self.data, '__getitem__'):
         if isinstance(self.data[0], dict):
             if headers is None:
-                headers = self.data[0].keys()
+                headers = list(self.data[0].keys())
             self.data = [[row[col] for col in headers] for row in self.data]
             self.data.insert(0, headers)
         if hasattr(self.data[0], '__getitem__'):
