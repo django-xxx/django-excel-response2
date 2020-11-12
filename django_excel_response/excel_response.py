@@ -63,7 +63,8 @@ def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', header
     self.output.seek(0)
     super(ExcelResponse, self).__init__(self.output, content_type=content_type)
     file_name_ext = '_{0}'.format(datetime.datetime.now().strftime(self.format)) if self.format else ''
-    self['Content-Disposition'] = 'attachment;filename="%s.%s"' % ('{0}{1}'.format(self.output_name, file_name_ext).replace('"', '\"'), file_ext)
+    final_file_name = ('%s%s.%s' % (self.output_name, file_name_ext, self.file_ext)).replace('"', '\"')
+    self['Content-Disposition'] = 'attachment;filename="%s"' % final_file_name
 
 
 names = dir(http)
