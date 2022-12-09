@@ -1,6 +1,31 @@
 # django-excel-response2
 A function extends of Tarken's django-excel-response
 
+## django-excel-response
+
+A subclass of HttpResponse which will transform a QuerySet,
+or sequence of sequences, into either an Excel spreadsheet or
+CSV file formatted for Excel, depending on the amount of data.
+All of this is done in-memory and on-the-fly, with no disk writes,
+thanks to the StringIO library.
+
+* DjangoSnippets - http://djangosnippets.org/snippets/1151/
+* PyPI - https://pypi.python.org/pypi/django-excel-response/1.0
+
+## django-excel-response2
+
+When using Tarken’s django-excel-response.
+We find that Chinese is messed code when we open .xls in Mac OS.
+As discussed in http://segmentfault.com/q/1010000000095546.
+We realize django-excel-response2 Based on Tarken’s django-excel-response
+to solve this problem By adding a Param named font to set font.
+
+At The Same Time:
+
+* Fix Bug
+    * can't subtract offset-naive and offset-aware datetimes
+
+
 ## Inherit
 
     # Since Version 2.0.2

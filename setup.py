@@ -13,7 +13,8 @@ setup(
     version=version,
     keywords='django-excel-response django-excel-response2',
     description="A function extends of Tarken's django-excel-response",
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
 
     url='https://github.com/django-xxx/django-excel-response2',
 
@@ -22,7 +23,7 @@ setup(
 
     packages=['django_excel_response'],
     py_modules=[],
-    install_requires=['django-excel-base>=1.0.4', 'django-six>=1.0.4'],
+    install_requires=['django-excel-base>=1.0.5', 'django-six>=1.0.4'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
