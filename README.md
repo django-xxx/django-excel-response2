@@ -92,7 +92,7 @@ or
             [1, [2, 3]],
             [3, 4]
         ]
-        return ExcelResponse(data, 'my_data', font='name SimSum', row_merge=True)
+        return ExcelResponse(data, 'my_data', font='name SimSum', merge_type='row_merge')
 
 
 ## Params
