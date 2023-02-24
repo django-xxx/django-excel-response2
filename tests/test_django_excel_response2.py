@@ -89,26 +89,26 @@ class TestDjangoExcelResponse2Commands(object):
         assert xls22.data == self.sheet_data1
 
     def test_as_row_merge_xls(self):
-        xls1 = ExcelResponse(self.data1, 'my_data', font='name SimSum', row_merge=True)
+        xls1 = ExcelResponse(self.data1, 'my_data', font='name SimSum', merge_type='row_merge')
         assert xls1.headers['Content-Type'] == self.content_type_xls
         assert xls1.data == self.sheet_data1
 
-        xls2 = ExcelResponse(self.data2, 'my_data', font='name SimSum', row_merge=True)
+        xls2 = ExcelResponse(self.data2, 'my_data', font='name SimSum', merge_type='row_merge')
         assert xls2.headers['Content-Type'] == self.content_type_xls
         assert xls2.data == self.sheet_data1
 
-        xls3 = ExcelResponse(self.data3, 'my_data', font='name SimSum', row_merge=True)
+        xls3 = ExcelResponse(self.data3, 'my_data', font='name SimSum', merge_type='row_merge')
         assert xls3.headers['Content-Type'] == self.content_type_xls
         assert xls3.data == self.sheet_data2
 
-        xls11 = ExcelResponse(self.data1, 'my_data', font='name SimSum', row_merge=True)
+        xls11 = ExcelResponse(self.data1, 'my_data', font='name SimSum', merge_type='row_merge')
         assert xls11.headers['Content-Type'] == self.content_type_xls
         assert xls11.data == self.sheet_data1
 
-        xls22 = ExcelResponse(self.data2, 'my_data', font='name SimSum', row_merge=True)
+        xls22 = ExcelResponse(self.data2, 'my_data', font='name SimSum', merge_type='row_merge')
         assert xls22.headers['Content-Type'] == self.content_type_xls
         assert xls22.data == self.sheet_data1
 
-        xls33 = ExcelResponse(self.data3, 'my_data', font='name SimSum', row_merge=True)
+        xls33 = ExcelResponse(self.data3, 'my_data', font='name SimSum', merge_type='row_merge')
         assert xls33.headers['Content-Type'] == self.content_type_xls
         assert xls33.data == self.sheet_data2
