@@ -3,10 +3,11 @@
 import datetime
 
 from django import http
+from django.conf import settings
 from django.db.models.query import QuerySet
-from django_excel_base import (BytesIO, StringIO, as_csv, as_dict_row_merge_xls, as_list_row_merge_xls,
-                               as_row_merge_xls, as_xls, is_py2)
 from django_six import Support_ValuesQuerySet, ValuesQuerySet
+from excel_base import (BytesIO, StringIO, as_csv, as_dict_row_merge_xls, as_list_row_merge_xls, as_row_merge_xls,
+                        as_xls, is_py2)
 
 
 # Min (Max. Rows) for Widely Used Excel
@@ -17,7 +18,7 @@ EXCEL_MAXIMUM_ALLOWED_ROWS = 65536
 EXCEL_MAXIMUM_ALLOWED_COLUMN_WIDTH = 65535
 
 
-def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', headers=None, force_csv=False, encoding='utf-8-sig', font='', sheet_name='Sheet 1', blanks_for_none=True, auto_adjust_width=True, min_cell_width=1000, vert=0x01, horz=0x01, hvert=0x01, hhorz=0x02, merge_type=None, mapping=None):
+def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', headers=None, force_csv=False, encoding='utf-8-sig', font=None, sheet_name='Sheet 1', blanks_for_none=True, auto_adjust_width=True, min_cell_width=1000, vert=0x01, horz=0x01, hvert=0x01, hhorz=0x02, merge_type=None, mapping=None, timezone=None):
     self.data = data
     self.output_name = output_name
     self.format = format
@@ -40,6 +41,7 @@ def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', header
     self.hvert = hvert
     self.hhorz = hhorz
     self.mapping = mapping
+    self.timezone = timezone or settings.TIME_ZONE
 
     if merge_type != 'dict_row_merge':
         if not isinstance(self.data, dict):
