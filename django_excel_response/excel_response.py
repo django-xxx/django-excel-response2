@@ -60,13 +60,14 @@ def __init__(self, data, output_name='excel_data', format='%Y%m%d%H%M%S', header
             if not hasattr(sheet_data, '__getitem__'):
                 valid_data = False
                 break
-            if isinstance(sheet_data[0], dict):
-                if sheet_headers is None:
-                    sheet_headers = list(sheet_data[0].keys())
-                sheet_data = [[row[col] for col in sheet_headers] for row in sheet_data]
-            if not hasattr(sheet_data[0], '__getitem__'):
-                valid_data = False
-                break
+            if sheet_data:
+                if isinstance(sheet_data[0], dict):
+                    if sheet_headers is None:
+                        sheet_headers = list(sheet_data[0].keys())
+                    sheet_data = [[row[col] for col in sheet_headers] for row in sheet_data]
+                if not hasattr(sheet_data[0], '__getitem__'):
+                    valid_data = False
+                    break
             if sheet_headers and not hasattr(sheet_headers[0], '__getitem__'):
                 valid_data = False
                 break
